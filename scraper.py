@@ -8,7 +8,11 @@ soup = BeautifulSoup(res.text, 'html.parser')
 titles = soup.select('.titleline')
 subtext = soup.select('.subtext')
 
-def rank_hn_articles(titles, subtext):
+def sort_stories_by_votes(hnlist):
+    return sorted(hnlist, key=lambda x: x["Points"], reverse=True)
+
+
+def create_custom_hn(titles, subtext):
     hn = []
     for idx, item in enumerate(titles):
         title = item.getText()
@@ -18,4 +22,4 @@ def rank_hn_articles(titles, subtext):
             points = int(vote[0].getText().replace(' points', ''))
             if points >= 100: 
                 hn.append({"Title":title, "Link":link, "Points":points})
-    return hn
+    return sort_stories_by_votes(hn)
