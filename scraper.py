@@ -38,5 +38,15 @@ def get_hn_top_stories_by_page(number_of_pages):
         stories_list.append(stories)    
     
     return stories_list
+
+
+def flatten_list_of_lists(lol):
+    flat_list = []
+
+    for lst in lol:
+        flat_list.extend(lst)
     
-pprint(get_hn_top_stories_by_page(4))
+    return flat_list
+
+
+pprint(flatten_list_of_lists(get_hn_top_stories_by_page(4)))
